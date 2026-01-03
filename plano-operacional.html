@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Plano Operacional Multitel 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        .fade-out {
+            animation: fadeOut 0.8s ease-in-out forwards;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .slide-in {
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; visibility: hidden; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .org-line-vertical {
+            position: relative;
+        }
+        
+        .org-line-vertical::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 30px;
+            background-color: #3b82f6;
+        }
+        
+        .org-line-horizontal {
+            position: relative;
+        }
+        
+        .org-line-horizontal::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 30px;
+            background-color: #3b82f6;
+        }
+        
+        .cto-line::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 30px;
+            background-color: #3b82f6;
+        }
+        
+        .cto-connection {
+            position: relative;
+        }
+        
+        .cto-connection::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 30px;
+            background-color: #3b82f6;
+        }
+        
+        .node-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .department-card {
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .connection-line {
+            width: 80%;
+            height: 2px;
+            background-color: #3b82f6;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        .connection-line::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            width: 2px;
+            height: 30px;
+            background-color: #3b82f6;
+            transform: translateX(-50%);
+        }
+        
+        /* Estilo para indicar que é clicável */
+        .clickable-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .clickable-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Intro Screen -->
+    <div id="introScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-b from-blue-900 to-blue-700 text-white transition-all duration-1000">
+        <div class="text-center pulse">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">Bem-vindos ao Ano de 2026</h1>
+            <div class="flex justify-center items-center">
+                <div class="h-1 w-24 bg-blue-400 mr-4"></div>
+                <h2 class="text-3xl md:text-5xl font-semibold text-blue-200">Multitel</h2>
+                <div class="h-1 w-24 bg-blue-400 ml-4"></div>
+            </div>
+            <p class="text-xl md:text-2xl mt-10 text-blue-100 italic">"Construindo relações de confiança"</p>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-blue-200">
+            <p class="text-sm animate-bounce">Carregando dashboard...</p>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="hidden min-h-screen">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white shadow-lg">
+            <div class="container mx-auto px-4 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <div class="bg-white p-3 rounded-lg mr-4">
+                            <i class="fas fa-satellite-dish text-blue-700 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl md:text-3xl font-bold">Plano Operacional Multitel 2026</h1>
+                            <p class="text-blue-200">Dashboard Interativo</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <button id="backToMainBtn" class="bg-blue-900 hover:bg-blue-800 text-white py-2 px-4 rounded-lg flex items-center mr-4 hidden">
+                            <i class="fas fa-arrow-left mr-2"></i> Voltar ao Organograma
+                        </button>
+                        <div class="text-right">
+                            <p class="text-blue-200 text-sm">Última atualização</p>
+                            <p id="currentDate" class="font-semibold"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Main Organizational Chart -->
+            <div id="mainOrgChart" class="fade-in">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Organograma Multitel 2026</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto">Clique em qualquer área para visualizar detalhes do plano operacional, objetivos estratégicos e metas específicas para 2026.</p>
+                </div>
+                
+                <!-- CEO Level -->
+                <div class="flex justify-center mb-12">
+                    <div class="node-container">
+                        <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white p-6 rounded-xl shadow-xl department-card w-72 clickable-card" id="ceoCard">
+                            <div class="text-center">
+                                <i class="fas fa-crown text-3xl mb-3 text-yellow-300"></i>
+                                <h3 class="text-xl font-bold">Direcção Executiva</h3>
+                                <p class="text-blue-200 text-sm mt-2">CEO: Eng. Kussi Bernardo</p>
+                                <p class="text-blue-100 text-xs mt-1">Visão estratégica e liderança corporativa</p>
+                            </div>
+                            <div class="text-center mt-4">
+                                <p class="text-xs text-blue-200 italic">"Liderando a transformação digital"</p>
+                                <div class="mt-2">
+                                    <span class="inline-block bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">Clique para detalhes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Connection line from CEO to CTO -->
+                <div class="connection-line mb-6"></div>
+                
+                <!-- CTO Level -->
+                <div class="flex justify-center mb-12">
+                    <div class="node-container">
+                        <div class="bg-gradient-to-r from-indigo-700 to-indigo-500 text-white p-6 rounded-xl shadow-xl department-card w-72 clickable-card" id="ctoCard">
+                            <div class="text-center">
+                                <i class="fas fa-laptop-code text-3xl mb-3 text-green-300"></i>
+                                <h3 class="text-xl font-bold">Direcção de Tecnologia</h3>
+                                <p class="text-indigo-200 text-sm mt-2">CTO: Eng. Leonel Augusto</p>
+                                <p class="text-indigo-100 text-xs mt-1">Inovação, infraestrutura e transformação digital</p>
+                            </div>
+                            <div class="text-center mt-4">
+                                <p class="text-xs text-indigo-200 italic">"Tecnologia que impulsiona resultados"</p>
+                                <div class="mt-2">
+                                    <span class="inline-block bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">Clique para detalhes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Connection line from CTO to Departments -->
+                <div class="connection-line mb-10"></div>
+                
+                <!-- Department Level -->
+                <div id="departmentContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Departments will be rendered here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Department Detail View -->
+            <div id="departmentDetail" class="hidden">
+                <!-- Department header -->
+                <div id="deptHeader" class="mb-10 fade-in">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+                
+                <!-- Sub-departments -->
+                <div id="subDepartments" class="mb-12">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Estrutura da Área</h3>
+                    <div id="subDeptContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Sub-departments will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Objectives and Goals -->
+                <div id="objectivesSection" class="bg-white rounded-xl shadow-lg p-6 mb-8 slide-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Objetivos Estratégicos 2026</h3>
+                    <div id="objectivesContainer">
+                        <!-- Objectives will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Metrics -->
+                <div id="metricsSection" class="bg-gradient-to-r from-blue-50 to-gray-50 rounded-xl shadow-lg p-6 slide-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Metas do Plano Operacional</h3>
+                    <div id="metricsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Metrics will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTO Detail View -->
+            <div id="ctoDetail" class="hidden">
+                <!-- CTO header -->
+                <div class="mb-10 fade-in">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r from-indigo-700 to-indigo-500 text-white rounded-xl shadow-lg p-6">
+                        <div class="flex items-center mb-4 md:mb-0">
+                            <div class="bg-white bg-opacity-20 p-4 rounded-xl mr-4">
+                                <i class="fas fa-laptop-code text-3xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold">Director de Tecnologia (CTO)</h2>
+                                <p class="text-indigo-200 mt-1">Inovação, infraestrutura e transformação digital</p>
+                                <div class="flex items-center mt-3">
+                                    <i class="fas fa-user-tie mr-2"></i>
+                                    <span class="font-semibold">CTO: Eng. Leonel Augusto</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center md:text-right">
+                            <p class="text-xl italic">"Tecnologia que impulsiona resultados"</p>
+                            <div class="mt-3">
+                                <span class="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-lg font-semibold">Plano Operacional 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTO Sub-areas -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Áreas de Atuação</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-5 card-hover">
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-server text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800">Infraestrutura & Rede</h4>
+                                    <p class="text-gray-600 text-sm mt-1">Director(a): Paulo Henrique</p>
+                                    <div class="mt-3">
+                                        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">5G & Fibra Óptica</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-md p-5 card-hover">
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-cloud text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800">Tecnologia da Informação</h4>
+                                    <p class="text-gray-600 text-sm mt-1">Director(a): Carlos Mendes</p>
+                                    <div class="mt-3">
+                                        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Sistemas & Cloud</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-md p-5 card-hover">
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-robot text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800">Inovação & R&D</h4>
+                                    <p class="text-gray-600 text-sm mt-1">Director(a): Sandra Oliveira</p>
+                                    <div class="mt-3">
+                                        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Pesquisa & Desenvolvimento</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTO Objectives -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-8 slide-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Objetivos Estratégicos da CTO 2026</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 text-indigo-800 rounded-full p-2 mr-4 mt-1">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800">Implementação do Plano 5G Nacional</h4>
+                                <p class="text-gray-700 mt-1">Expandir cobertura 5G para 100% das capitais e 70% das cidades com mais de 100k habitantes até Q4 2026.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 text-indigo-800 rounded-full p-2 mr-4 mt-1">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800">Migração para Cloud Híbrida</h4>
+                                <p class="text-gray-700 mt-1">Transferir 60% da infraestrutura crítica para ambiente cloud híbrido com redundância nacional e internacional.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 text-indigo-800 rounded-full p-2 mr-4 mt-1">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Centro de Inovação em IA</h4>
+                                <p class="text-gray-700 mt-1">Estabelecer centro de excelência em Inteligência Artificial com foco em otimização de rede e atendimento ao cliente.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 text-indigo-800 rounded-full p-2 mr-4 mt-1">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800">Cibersegurança Avançada</h4>
+                                <p class="text-gray-700 mt-1">Implementar sistema de proteção contra ameaças cibernéticas de última geração com monitoramento 24/7.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTO Metrics -->
+                <div class="bg-gradient-to-r from-indigo-50 to-gray-50 rounded-xl shadow-lg p-6 slide-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Metas da Direcção de Tecnologia</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-xl shadow p-5">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-bold text-gray-800">Cobertura 5G</h4>
+                                <span class="bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 100% capitais</span>
+                            </div>
+                            <div class="mb-2 flex justify-between">
+                                <span class="text-sm text-gray-600">Progresso</span>
+                                <span class="text-sm font-semibold">45%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="h-2.5 rounded-full bg-blue-500" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow p-5">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-bold text-gray-800">Migração Cloud</h4>
+                                <span class="bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 60%</span>
+                            </div>
+                            <div class="mb-2 flex justify-between">
+                                <span class="text-sm text-gray-600">Progresso</span>
+                                <span class="text-sm font-semibold">25%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="h-2.5 rounded-full bg-yellow-500" style="width: 25%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow p-5">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-bold text-gray-800">Disponibilidade Rede</h4>
+                                <span class="bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 99.95%</span>
+                            </div>
+                            <div class="mb-2 flex justify-between">
+                                <span class="text-sm text-gray-600">Progresso</span>
+                                <span class="text-sm font-semibold">99.2%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="h-2.5 rounded-full bg-green-500" style="width: 99.2%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CEO Detail View -->
+            <div id="ceoDetail" class="hidden">
+                <!-- CEO header -->
+                <div class="mb-10 fade-in">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r from-blue-900 to-blue-700 text-white rounded-xl shadow-lg p-6">
+                        <div class="flex items-center mb-4 md:mb-0">
+                            <div class="bg-white bg-opacity-20 p-4 rounded-xl mr-4">
+                                <i class="fas fa-crown text-3xl text-yellow-300"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold">Direcção Executiva (CEO)</h2>
+                                <p class="text-blue-200 mt-1">Visão estratégica e liderança corporativa</p>
+                                <div class="flex items-center mt-3">
+                                    <i class="fas fa-user-tie mr-2"></i>
+                                    <span class="font-semibold">CEO: Eng. Kussi Bernardo</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center md:text-right">
+                            <p class="text-xl italic">"Liderando a transformação digital"</p>
+                            <div class="mt-3">
+                                <span class="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-lg font-semibold">Visão 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CEO Vision -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Visão Estratégica</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-bullseye text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800">Missão</h4>
+                                    <p class="text-gray-700 mt-2">Conectar pessoas e empresas através de soluções tecnológicas inovadoras, oferecendo serviços de telecomunicações de excelência que impulsionam o desenvolvimento econômico e social.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-eye text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800">Visão 2026</h4>
+                                    <p class="text-gray-700 mt-2">Ser reconhecida como a principal empresa de telecomunicações do país, referência em inovação tecnológica, qualidade de serviço e sustentabilidade empresarial.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CEO Objectives -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-8 slide-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Diretrizes Estratégicas 2026</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-4 mt-1">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800">Crescimento Sustentável</h4>
+                                <p class="text-gray-700 mt-1">Aumentar a participação de mercado em 25% mantendo margens saudáveis e qualidade superior de serviço.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-4 mt-1">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800">Inovação Contínua</h4>
+                                <p class="text-gray-700 mt-1">Investir 15% do faturamento em P&D para manter liderança tecnológica e antecipar tendências do mercado.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-4 mt-1">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Excelência Organizacional</h4>
+                                <p class="text-gray-700 mt-1">Desenvolver talentos internos e fortalecer a cultura corporativa baseada em resultados e inovação.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-4 mt-1">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-800">Sustentabilidade</h4>
+                                <p class="text-gray-700 mt-1">Implementar práticas ESG (Environmental, Social, Governance) em todas as operações da empresa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CEO Metrics -->
+                <div class="bg-gradient-to-r from-blue-50 to-gray-50 rounded-xl shadow-lg p-6 slide-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Indicadores de Performance Corporativa</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-xl shadow p-5">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-bold text-gray-800">Faturamento Total</h4>
+                                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: R$ 500M</span>
+                            </div>
+                            <div class="mb-2 flex justify-between">
+                                <span class="text-sm text-gray-600">Progresso</span>
+                                <span class="text-sm font-semibold">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="h-2.5 rounded-full bg-green-500" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow p-5">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-bold text-gray-800">Satisfação do Cliente</h4>
+                                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 95%</span>
+                            </div>
+                            <div class="mb-2 flex justify-between">
+                                <span class="text-sm text-gray-600">Progresso</span>
+                                <span class="text-sm font-semibold">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="h-2.5 rounded-full bg-blue-500" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow p-5">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-bold text-gray-800">Investimento em P&D</h4>
+                                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 15%</span>
+                            </div>
+                            <div class="mb-2 flex justify-between">
+                                <span class="text-sm text-gray-600">Progresso</span>
+                                <span class="text-sm font-semibold">12%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="h-2.5 rounded-full bg-yellow-500" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-6 mt-12">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <div class="flex items-center">
+                            <i class="fas fa-satellite-dish text-blue-400 text-2xl mr-3"></i>
+                            <h3 class="text-xl font-bold">Multitel</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mt-2">© 2026 - Todos os direitos reservados</p>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <p class="text-gray-400">Dashboard do Plano Operacional 2026</p>
+                        <p class="text-gray-400 text-sm">Versão 1.0 | Atualizado em: <span id="footerDate"></span></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Company data - easy to replace with JSON
+        const companyData = {
+            companyName: "Multitel",
+            year: "2026",
+            departments: [
+                {
+                    id: "commercial",
+                    name: "Comercial",
+                    icon: "fa-chart-line",
+                    color: "from-blue-600 to-blue-400",
+                    description: "Responsável pelas vendas, marketing e relacionamento com clientes",
+                    manager: "Edna Dias",
+                    slogan: "Expandindo mercados, conquistando clientes",
+                    subDepartments: [
+                        { name: "Vendas Corporativas", manager: "Carlos Mendes" },
+                        { name: "Marketing Digital", manager: "Ana Costa" },
+                        { name: "Atendimento ao Cliente", manager: "Fernanda Lima" },
+                        { name: "Novos Negócios", manager: "Ricardo Alves" }
+                    ],
+                    objectives: [
+                        "Aumentar market share em 15% nos segmentos corporativo e residencial",
+                        "Expandir presença para 3 novas regiões metropolitanas",
+                        "Lançar 2 novos pacotes de serviços premium",
+                        "Implementar sistema de CRM integrado para melhor acompanhamento de leads"
+                    ],
+                    metrics: [
+                        { name: "Faturamento", target: "R$ 120M", progress: 65 },
+                        { name: "Novos Clientes", target: "25.000", progress: 40 },
+                        { name: "Satisfação do Cliente", target: "92%", progress: 85 },
+                        { name: "Taxa de Retenção", target: "95%", progress: 90 },
+                        { name: "Leads Qualificados", target: "50.000", progress: 70 },
+                        { name: "Cobertura Geográfica", target: "15 estados", progress: 80 }
+                    ]
+                },
+                {
+                    id: "technical",
+                    name: "Técnico & Operações",
+                    icon: "fa-network-wired",
+                    color: "from-green-600 to-green-400",
+                    description: "Responsável pela infraestrutura, rede e qualidade dos serviços",
+                    manager: "Bertson Sebastião",
+                    slogan: "Excelência técnica, operação sem falhas",
+                    subDepartments: [
+                        { name: "Engenharia de Rede", manager: "Roberto Andrade" },
+                        { name: "Operações Técnicas", manager: "Sérgio Moura" },
+                        { name: "Suporte Técnico", manager: "Patrícia Nunes" },
+                        { name: "Qualidade de Serviço", manager: "Marcos Silva" }
+                    ],
+                    objectives: [
+                        "Implementar rede 5G em todas as capitais até Q3 2026",
+                        "Reduzir tempo médio de reparo em 30%",
+                        "Atingir 99,9% de disponibilidade da rede principal",
+                        "Migrar 40% da infraestrutura para virtualização"
+                    ],
+                    metrics: [
+                        { name: "Disponibilidade da Rede", target: "99,9%", progress: 99 },
+                        { name: "Tempo Médio de Reparo", target: "2h", progress: 60 },
+                        { name: "Cobertura 5G", target: "100% capitais", progress: 45 },
+                        { name: "Virtualização", target: "40%", progress: 25 },
+                        { name: "Latência Média", target: "< 20ms", progress: 90 },
+                        { name: "Chamados Resolvidos", target: "98%", progress: 96 }
+                    ]
+                },
+                {
+                    id: "rh",
+                    name: "Recursos Humanos",
+                    icon: "fa-users",
+                    color: "from-purple-600 to-purple-400",
+                    description: "Gestão de pessoas, desenvolvimento e cultura organizacional",
+                    manager: "Sanza Adão",
+                    slogan: "Pessoas em primeiro lugar, sempre",
+                    subDepartments: [
+                        { name: "Recrutamento & Seleção", manager: "Beatriz Santos" },
+                        { name: "Desenvolvimento Organizacional", manager: "Rafael Costa" },
+                        { name: "Benefícios & Remuneração", manager: "Juliana Almeida" },
+                        { name: "Relações Trabalhistas", manager: "Paulo Henrique" }
+                    ],
+                    objectives: [
+                        "Reduzir turnover em 20% através de programas de retenção",
+                        "Implementar plano de carreira para todas as posições",
+                        "Capacitar 100% dos colaboradores em transformação digital",
+                        "Aumentar satisfação interna para 85% no índice de clima organizacional"
+                    ],
+                    metrics: [
+                        { name: "Satisfação Interna", target: "85%", progress: 78 },
+                        { name: "Taxa de Turnover", target: "12%", progress: 50 },
+                        { name: "Treinamentos Concluídos", target: "100%", progress: 65 },
+                        { name: "Plano de Carreira", target: "100% cargos", progress: 40 },
+                        { name: "Tempo de Contratação", target: "30 dias", progress: 70 },
+                        { name: "Avaliações de Desempenho", target: "100%", progress: 90 }
+                    ]
+                },
+                {
+                    id: "finance",
+                    name: "Financeiro & Controladoria",
+                    icon: "fa-chart-pie",
+                    color: "from-yellow-600 to-yellow-400",
+                    description: "Gestão financeira, orçamento e controle patrimonial",
+                    manager: "Afonso Vita",
+                    slogan: "Gestão eficiente, resultados sustentáveis",
+                    subDepartments: [
+                        { name: "Controladoria", manager: "Luciana Freitas" },
+                        { name: "Tesouraria", manager: "Gustavo Noronha" },
+                        { name: "Orçamento", manager: "Fábio Queiroz" },
+                        { name: "Contabilidade", manager: "Mariana Pinheiro" }
+                    ],
+                    objectives: [
+                        "Reduzir custos operacionais em 8% sem impactar qualidade",
+                        "Implementar sistema de BI para análise financeira em tempo real",
+                        "Aumentar margem EBITDA para 28%",
+                        "Otimizar capital de giro reduzindo ciclo financeiro em 15 dias"
+                    ],
+                    metrics: [
+                        { name: "Margem EBITDA", target: "28%", progress: 24 },
+                        { name: "Redução de Custos", target: "8%", progress: 30 },
+                        { name: "Ciclo Financeiro", target: "45 dias", progress: 65 },
+                        { name: "ROI Projetos", target: "15%", progress: 70 },
+                        { name: "Relatórios Automatizados", target: "80%", progress: 55 },
+                        { name: "Conformidade Fiscal", target: "100%", progress: 95 }
+                    ]
+                }
+            ]
+        };
+
+        // DOM elements
+        const introScreen = document.getElementById('introScreen');
+        const dashboard = document.getElementById('dashboard');
+        const departmentContainer = document.getElementById('departmentContainer');
+        const mainOrgChart = document.getElementById('mainOrgChart');
+        const departmentDetail = document.getElementById('departmentDetail');
+        const ctoDetail = document.getElementById('ctoDetail');
+        const ceoDetail = document.getElementById('ceoDetail');
+        const deptHeader = document.getElementById('deptHeader');
+        const subDeptContainer = document.getElementById('subDeptContainer');
+        const objectivesContainer = document.getElementById('objectivesContainer');
+        const metricsContainer = document.getElementById('metricsContainer');
+        const backToMainBtn = document.getElementById('backToMainBtn');
+        const currentDateEl = document.getElementById('currentDate');
+        const footerDateEl = document.getElementById('footerDate');
+        const ceoCard = document.getElementById('ceoCard');
+        const ctoCard = document.getElementById('ctoCard');
+
+        // Initialize the dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date
+            const now = new Date();
+            const options = { day: '2-digit', month: 'long', year: 'numeric' };
+            const formattedDate = now.toLocaleDateString('pt-BR', options);
+            currentDateEl.textContent = formattedDate;
+            footerDateEl.textContent = formattedDate;
+            
+            // Render main organizational chart
+            renderMainOrgChart();
+            
+            // Add click events to CEO and CTO cards
+            ceoCard.addEventListener('click', showCeoDetail);
+            ctoCard.addEventListener('click', showCtoDetail);
+            
+            // Set up intro animation
+            setTimeout(() => {
+                introScreen.classList.remove('pulse');
+                introScreen.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    introScreen.style.display = 'none';
+                    dashboard.classList.remove('hidden');
+                    dashboard.classList.add('fade-in');
+                }, 800);
+            }, 3000);
+        });
+
+        // Render main organizational chart
+        function renderMainOrgChart() {
+            departmentContainer.innerHTML = '';
+            
+            companyData.departments.forEach(dept => {
+                const departmentCard = document.createElement('div');
+                departmentCard.className = 'node-container org-line-horizontal';
+                
+                departmentCard.innerHTML = `
+                    <div class="bg-gradient-to-r ${dept.color} text-white p-6 rounded-xl shadow-lg department-card card-hover cursor-pointer transition-all duration-300 hover:shadow-xl clickable-card" data-dept="${dept.id}">
+                        <div class="text-center">
+                            <i class="fas ${dept.icon} text-3xl mb-3"></i>
+                            <h3 class="text-xl font-bold">${dept.name}</h3>
+                            <p class="text-opacity-90 text-sm mt-2">${dept.description}</p>
+                        </div>
+                        <div class="text-center mt-4">
+                            <p class="text-xs font-light">Director(a): ${dept.manager}</p>
+                            <div class="mt-3">
+                                <span class="inline-block bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">Clique para detalhes</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                departmentContainer.appendChild(departmentCard);
+            });
+            
+            // Add event listeners to department cards
+            document.querySelectorAll('[data-dept]').forEach(card => {
+                card.addEventListener('click', function() {
+                    const deptId = this.getAttribute('data-dept');
+                    showDepartmentDetail(deptId);
+                });
+            });
+        }
+
+        // Show department detail view
+        function showDepartmentDetail(deptId) {
+            const department = companyData.departments.find(d => d.id === deptId);
+            
+            if (!department) return;
+            
+            // Hide main org chart, show detail view
+            mainOrgChart.classList.add('hidden');
+            departmentDetail.classList.remove('hidden');
+            ctoDetail.classList.add('hidden');
+            ceoDetail.classList.add('hidden');
+            backToMainBtn.classList.remove('hidden');
+            
+            // Render department header
+            deptHeader.innerHTML = `
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r ${department.color} text-white rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <div class="bg-white bg-opacity-20 p-4 rounded-xl mr-4">
+                            <i class="fas ${department.icon} text-3xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold">Área ${department.name}</h2>
+                            <p class="text-opacity-90 mt-1">${department.description}</p>
+                            <div class="flex items-center mt-3">
+                                <i class="fas fa-user-tie mr-2"></i>
+                                <span class="font-semibold">Director(a): ${department.manager}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <p class="text-xl italic">"${department.slogan}"</p>
+                        <div class="mt-3">
+                            <span class="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-lg font-semibold">Plano Operacional 2026</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Render sub-departments
+            subDeptContainer.innerHTML = '';
+            department.subDepartments.forEach(subDept => {
+                const subDeptCard = document.createElement('div');
+                subDeptCard.className = 'bg-white rounded-lg shadow-md p-5 card-hover';
+                subDeptCard.innerHTML = `
+                    <div class="flex items-start">
+                        <div class="bg-gray-100 p-3 rounded-lg mr-4">
+                            <i class="fas fa-folder text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-gray-800">${subDept.name}</h4>
+                            <p class="text-gray-600 text-sm mt-1">Responsável: ${subDept.manager}</p>
+                            <div class="mt-3">
+                                <span class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Sub-departamento</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                subDeptContainer.appendChild(subDeptCard);
+            });
+            
+            // Render objectives
+            objectivesContainer.innerHTML = '';
+            department.objectives.forEach((objective, index) => {
+                const objectiveItem = document.createElement('div');
+                objectiveItem.className = 'flex items-start mb-5';
+                objectiveItem.innerHTML = `
+                    <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-4 mt-1">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-gray-800">Objetivo ${index + 1}</h4>
+                        <p class="text-gray-700 mt-1">${objective}</p>
+                    </div>
+                `;
+                objectivesContainer.appendChild(objectiveItem);
+            });
+            
+            // Render metrics
+            metricsContainer.innerHTML = '';
+            department.metrics.forEach(metric => {
+                const progressColor = metric.progress >= 80 ? 'bg-green-500' : 
+                                    metric.progress >= 60 ? 'bg-blue-500' : 
+                                    metric.progress >= 40 ? 'bg-yellow-500' : 'bg-red-500';
+                
+                const metricCard = document.createElement('div');
+                metricCard.className = 'bg-white rounded-xl shadow p-5';
+                metricCard.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-gray-800">${metric.name}</h4>
+                        <span class="bg-gray-100 text-gray-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: ${metric.target}</span>
+                    </div>
+                    <div class="mb-2 flex justify-between">
+                        <span class="text-sm text-gray-600">Progresso</span>
+                        <span class="text-sm font-semibold">${metric.progress}%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="h-2.5 rounded-full ${progressColor}" style="width: ${metric.progress}%"></div>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <span class="text-xs text-gray-500">Atualizado em: ${new Date().toLocaleDateString('pt-BR')}</span>
+                    </div>
+                `;
+                metricsContainer.appendChild(metricCard);
+            });
+            
+            // Scroll to top of detail view
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show CTO detail view
+        function showCtoDetail() {
+            // Hide main org chart, show CTO detail view
+            mainOrgChart.classList.add('hidden');
+            departmentDetail.classList.add('hidden');
+            ctoDetail.classList.remove('hidden');
+            ceoDetail.classList.add('hidden');
+            backToMainBtn.classList.remove('hidden');
+            
+            // Scroll to top of detail view
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show CEO detail view
+        function showCeoDetail() {
+            // Hide main org chart, show CEO detail view
+            mainOrgChart.classList.add('hidden');
+            departmentDetail.classList.add('hidden');
+            ctoDetail.classList.add('hidden');
+            ceoDetail.classList.remove('hidden');
+            backToMainBtn.classList.remove('hidden');
+            
+            // Scroll to top of detail view
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Back to main org chart
+        backToMainBtn.addEventListener('click', function() {
+            departmentDetail.classList.add('hidden');
+            ctoDetail.classList.add('hidden');
+            ceoDetail.classList.add('hidden');
+            mainOrgChart.classList.remove('hidden');
+            backToMainBtn.classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Responsive adjustments
+        window.addEventListener('resize', function() {
+            // Adjust layout for mobile if needed
+            if (window.innerWidth < 768) {
+                document.querySelectorAll('.department-card').forEach(card => {
+                    card.classList.remove('min-h-48');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
