@@ -59,62 +59,6 @@
             to { transform: translateY(0); opacity: 1; }
         }
         
-        .org-line-vertical {
-            position: relative;
-        }
-        
-        .org-line-vertical::after {
-            content: '';
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 30px;
-            background-color: #3b82f6;
-        }
-        
-        .org-line-horizontal {
-            position: relative;
-        }
-        
-        .org-line-horizontal::before {
-            content: '';
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 30px;
-            background-color: #3b82f6;
-        }
-        
-        .cto-line::after {
-            content: '';
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 30px;
-            background-color: #3b82f6;
-        }
-        
-        .cto-connection {
-            position: relative;
-        }
-        
-        .cto-connection::before {
-            content: '';
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 30px;
-            background-color: #3b82f6;
-        }
-        
         .node-container {
             display: flex;
             flex-direction: column;
@@ -123,29 +67,44 @@
         }
         
         .department-card {
-            min-height: 160px;
+            min-height: 140px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
         
         .connection-line {
-            width: 80%;
-            height: 2px;
+            width: 2px;
+            height: 40px;
             background-color: #3b82f6;
-            margin: 0 auto 30px;
-            position: relative;
+            margin: 0 auto 10px;
         }
         
-        .connection-line::before {
-            content: '';
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            width: 2px;
-            height: 30px;
+        .connection-line-horizontal {
+            width: 100%;
+            height: 2px;
             background-color: #3b82f6;
-            transform: translateX(-50%);
+            margin: 20px 0;
+        }
+        
+        .horizontal-connector {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .horizontal-line {
+            width: 100%;
+            height: 2px;
+            background-color: #3b82f6;
+        }
+        
+        .vertical-line {
+            width: 2px;
+            height: 40px;
+            background-color: #3b82f6;
+            margin: 0 auto;
         }
         
         /* Estilo para indicar que é clicável */
@@ -157,6 +116,187 @@
         .clickable-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .org-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .sub-department-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .sub-department-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        /* Estilos específicos para organograma da DOM */
+        .dom-org-chart {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .dom-level-1 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .dom-level-2 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .dom-level-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .dom-connector {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .dom-connector-line {
+            width: 2px;
+            height: 30px;
+            background-color: #10b981;
+        }
+        
+        .dom-area-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #10b981;
+            transition: all 0.3s ease;
+        }
+        
+        .dom-area-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .infraestrutura-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #0ea5e9;
+        }
+        
+        .comite-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid #f59e0b;
+        }
+        
+        /* Estilos específicos para organograma da DDI */
+        .ddi-org-chart {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .ddi-level-1 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .ddi-level-2 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .ddi-level-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ddi-connector {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        
+        .ddi-connector-line {
+            width: 2px;
+            height: 30px;
+            background-color: #8b5cf6;
+        }
+        
+        .ddi-area-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #8b5cf6;
+            transition: all 0.3s ease;
+        }
+        
+        .ddi-area-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 16px -4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .innovation-section {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 2px solid #8b5cf6;
+        }
+        
+        .chefe-departamento-card {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #4f46e5;
+        }
+        
+        /* Cores específicas para DDI */
+        .bg-ddi-gradient {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+        
+        .text-ddi-light {
+            color: #ddd6fe;
+        }
+        
+        .border-ddi {
+            border-color: #8b5cf6;
         }
     </style>
 </head>
@@ -189,12 +329,15 @@
                         </div>
                         <div>
                             <h1 class="text-2xl md:text-3xl font-bold">Plano Operacional Multitel 2026</h1>
-                            <p class="text-blue-200">Dashboard Interativo</p>
+                            <p class="text-blue-200">Dashboard Interativo do Organograma Institucional</p>
                         </div>
                     </div>
                     <div class="flex items-center">
                         <button id="backToMainBtn" class="bg-blue-900 hover:bg-blue-800 text-white py-2 px-4 rounded-lg flex items-center mr-4 hidden">
                             <i class="fas fa-arrow-left mr-2"></i> Voltar ao Organograma
+                        </button>
+                        <button id="backToDirectionsBtn" class="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded-lg flex items-center mr-4 hidden">
+                            <i class="fas fa-arrow-left mr-2"></i> Voltar às Direções
                         </button>
                         <div class="text-right">
                             <p class="text-blue-200 text-sm">Última atualização</p>
@@ -210,22 +353,22 @@
             <!-- Main Organizational Chart -->
             <div id="mainOrgChart" class="fade-in">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Organograma Multitel 2026</h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Organograma Institucional Multitel 2026</h2>
                     <p class="text-gray-600 max-w-3xl mx-auto">Clique em qualquer área para visualizar detalhes do plano operacional, objetivos estratégicos e metas específicas para 2026.</p>
                 </div>
                 
-                <!-- CEO Level -->
-                <div class="flex justify-center mb-12">
+                <!-- Direcção Geral (DG) -->
+                <div class="flex justify-center mb-8">
                     <div class="node-container">
-                        <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white p-6 rounded-xl shadow-xl department-card w-72 clickable-card" id="ceoCard">
+                        <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white p-6 rounded-xl shadow-xl department-card w-80 clickable-card" id="dgCard">
                             <div class="text-center">
-                                <i class="fas fa-crown text-3xl mb-3 text-yellow-300"></i>
-                                <h3 class="text-xl font-bold">Direcção Executiva</h3>
-                                <p class="text-blue-200 text-sm mt-2">CEO: Eng. Kussi Bernardo</p>
-                                <p class="text-blue-100 text-xs mt-1">Visão estratégica e liderança corporativa</p>
+                                <i class="fas fa-user-tie text-3xl mb-3 text-yellow-300"></i>
+                                <h3 class="text-xl font-bold">Direcção Geral (DG)</h3>
+                                <p class="text-blue-200 text-sm mt-2">Gestão Executiva</p>
+                                <p class="text-blue-100 text-xs mt-1">Liderança e administração geral</p>
                             </div>
                             <div class="text-center mt-4">
-                                <p class="text-xs text-blue-200 italic">"Liderando a transformação digital"</p>
+                                <p class="text-xs text-blue-200 italic">"Liderança Executiva"</p>
                                 <div class="mt-2">
                                     <span class="inline-block bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">Clique para detalhes</span>
                                 </div>
@@ -234,21 +377,21 @@
                     </div>
                 </div>
                 
-                <!-- Connection line from CEO to CTO -->
-                <div class="connection-line mb-6"></div>
+                <!-- Connection line from DG to GGA -->
+                <div class="connection-line mb-8"></div>
                 
-                <!-- CTO Level -->
-                <div class="flex justify-center mb-12">
+                <!-- Gabinete Geral de Apoio (GGA) -->
+                <div class="flex justify-center mb-8">
                     <div class="node-container">
-                        <div class="bg-gradient-to-r from-indigo-700 to-indigo-500 text-white p-6 rounded-xl shadow-xl department-card w-72 clickable-card" id="ctoCard">
+                        <div class="bg-gradient-to-r from-indigo-700 to-indigo-500 text-white p-6 rounded-xl shadow-xl department-card w-80 clickable-card" id="ggaCard">
                             <div class="text-center">
-                                <i class="fas fa-laptop-code text-3xl mb-3 text-green-300"></i>
-                                <h3 class="text-xl font-bold">Direcção de Tecnologia</h3>
-                                <p class="text-indigo-200 text-sm mt-2">CTO: Eng. Leonel Augusto</p>
-                                <p class="text-indigo-100 text-xs mt-1">Inovação, infraestrutura e transformação digital</p>
+                                <i class="fas fa-headset text-3xl mb-3"></i>
+                                <h3 class="text-xl font-bold">Gabinete Geral de Apoio (GGA)</h3>
+                                <p class="text-indigo-200 text-sm mt-2">Suporte Executivo e Administrativo</p>
+                                <p class="text-indigo-100 text-xs mt-1">Apoio à Direcção Geral</p>
                             </div>
                             <div class="text-center mt-4">
-                                <p class="text-xs text-indigo-200 italic">"Tecnologia que impulsiona resultados"</p>
+                                <p class="text-xs text-indigo-200 italic">"Suporte Executivo Integral"</p>
                                 <div class="mt-2">
                                     <span class="inline-block bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">Clique para detalhes</span>
                                 </div>
@@ -257,27 +400,31 @@
                     </div>
                 </div>
                 
-                <!-- Connection line from CTO to Departments -->
-                <div class="connection-line mb-10"></div>
+                <!-- Connection line from GGA to Direções -->
+                <div class="connection-line-horizontal mb-10"></div>
                 
-                <!-- Department Level -->
-                <div id="departmentContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Departments will be rendered here by JavaScript -->
+                <!-- Direções Principais -->
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Direções Funcionais</h3>
+                </div>
+                
+                <div id="directionsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <!-- Direções serão renderizadas aqui por JavaScript -->
                 </div>
             </div>
 
-            <!-- Department Detail View -->
-            <div id="departmentDetail" class="hidden">
-                <!-- Department header -->
-                <div id="deptHeader" class="mb-10 fade-in">
+            <!-- Detail Views -->
+            <div id="detailView" class="hidden">
+                <!-- Detail header -->
+                <div id="detailHeader" class="mb-10 fade-in">
                     <!-- Content will be populated by JavaScript -->
                 </div>
                 
-                <!-- Sub-departments -->
-                <div id="subDepartments" class="mb-12">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Estrutura da Área</h3>
-                    <div id="subDeptContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Sub-departments will be populated by JavaScript -->
+                <!-- Sub-areas/Departments -->
+                <div id="subAreasSection" class="mb-12">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Estrutura Detalhada</h3>
+                    <div id="subAreasContainer">
+                        <!-- Sub-areas will be populated by JavaScript -->
                     </div>
                 </div>
                 
@@ -298,166 +445,290 @@
                 </div>
             </div>
             
-            <!-- CTO Detail View -->
-            <div id="ctoDetail" class="hidden">
-                <!-- CTO header -->
+            <!-- DOM Organizational Chart View -->
+            <div id="domOrgChartView" class="hidden">
+                <!-- DOM Header -->
                 <div class="mb-10 fade-in">
-                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r from-indigo-700 to-indigo-500 text-white rounded-xl shadow-lg p-6">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r from-green-700 to-green-500 text-white rounded-xl shadow-lg p-6">
                         <div class="flex items-center mb-4 md:mb-0">
                             <div class="bg-white bg-opacity-20 p-4 rounded-xl mr-4">
-                                <i class="fas fa-laptop-code text-3xl"></i>
+                                <i class="fas fa-network-wired text-3xl"></i>
                             </div>
                             <div>
-                                <h2 class="text-3xl font-bold">Director de Tecnologia (CTO)</h2>
-                                <p class="text-indigo-200 mt-1">Inovação, infraestrutura e transformação digital</p>
+                                <h2 class="text-3xl font-bold">Direcção de Operação e Manutenção (DOM)</h2>
+                                <p class="text-green-200 mt-1">Gestão técnica, operações de rede e manutenção</p>
                                 <div class="flex items-center mt-3">
                                     <i class="fas fa-user-tie mr-2"></i>
-                                    <span class="font-semibold">CTO: Eng. Leonel Augusto</span>
+                                    <span class="font-semibold">Director: Bertson Sebastião</span>
                                 </div>
                             </div>
                         </div>
                         <div class="text-center md:text-right">
-                            <p class="text-xl italic">"Tecnologia que impulsiona resultados"</p>
+                            <p class="text-xl italic">"Excelência Técnica, Operação sem Falhas"</p>
                             <div class="mt-3">
-                                <span class="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-lg font-semibold">Plano Operacional 2026</span>
+                                <span class="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-lg font-semibold">Estrutura Funcional 2026</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- CTO Sub-areas -->
-                <div class="mb-12">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Áreas de Atuação</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="bg-white rounded-lg shadow-md p-5 card-hover">
-                            <div class="flex items-start">
-                                <div class="bg-indigo-100 p-3 rounded-lg mr-4">
-                                    <i class="fas fa-server text-indigo-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-gray-800">Infraestrutura & Rede</h4>
-                                    <p class="text-gray-600 text-sm mt-1">Director(a): Paulo Henrique</p>
-                                    <div class="mt-3">
-                                        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">5G & Fibra Óptica</span>
-                                    </div>
-                                </div>
+                <!-- Comité de Planeamento e Optimização -->
+                <div class="mb-10">
+                    <div class="comite-card">
+                        <div class="flex items-center">
+                            <div class="bg-amber-500 text-white p-3 rounded-lg mr-4">
+                                <i class="fas fa-chart-line text-xl"></i>
                             </div>
-                        </div>
-                        
-                        <div class="bg-white rounded-lg shadow-md p-5 card-hover">
-                            <div class="flex items-start">
-                                <div class="bg-indigo-100 p-3 rounded-lg mr-4">
-                                    <i class="fas fa-cloud text-indigo-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-gray-800">Tecnologia da Informação</h4>
-                                    <p class="text-gray-600 text-sm mt-1">Director(a): Carlos Mendes</p>
-                                    <div class="mt-3">
-                                        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Sistemas & Cloud</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-white rounded-lg shadow-md p-5 card-hover">
-                            <div class="flex items-start">
-                                <div class="bg-indigo-100 p-3 rounded-lg mr-4">
-                                    <i class="fas fa-robot text-indigo-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-gray-800">Inovação & R&D</h4>
-                                    <p class="text-gray-600 text-sm mt-1">Director(a): Sandra Oliveira</p>
-                                    <div class="mt-3">
-                                        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Pesquisa & Desenvolvimento</span>
-                                    </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">Comité de Planeamento e Optimização da Experiência dos Clientes</h3>
+                                <p class="text-gray-700 mt-1">Vinculado diretamente ao Director de Operações e Manutenção</p>
+                                <div class="mt-2">
+                                    <span class="inline-block bg-amber-100 text-amber-800 text-sm px-3 py-1 rounded-full">Foco: Melhoria Contínua da Experiência do Cliente</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- CTO Objectives -->
-                <div class="bg-white rounded-xl shadow-lg p-6 mb-8 slide-in">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Objetivos Estratégicos da CTO 2026</h3>
+                <!-- Áreas Funcionais da DOM -->
+                <div class="dom-org-chart">
+                    <!-- Nível 1: Director -->
+                    <div class="dom-level-1">
+                        <div class="bg-gradient-to-r from-green-700 to-green-500 text-white p-5 rounded-xl shadow-lg department-card w-72">
+                            <div class="text-center">
+                                <i class="fas fa-user-tie text-2xl mb-2"></i>
+                                <h3 class="text-lg font-bold">Director de Operações e Manutenção</h3>
+                                <p class="text-green-200 text-xs mt-1">Bertson Sebastião</p>
+                                <div class="mt-3">
+                                    <span class="inline-block bg-white bg-opacity-20 px-2 py-1 rounded-full text-xs">Liderança Executiva</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Conector -->
+                    <div class="dom-connector">
+                        <div class="dom-connector-line"></div>
+                    </div>
+                    
+                    <!-- Nível 2: Áreas Principais -->
+                    <div class="dom-level-3">
+                        <div class="dom-area-card clickable-card" onclick="showDomAreaDetail('gor-gte')">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-lg mr-3">
+                                    <i class="fas fa-satellite text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">GOR / GTE</h4>
+                                    <p class="text-gray-600 text-sm mt-1">Gestão de Operações de Rede / Gestão Técnica</p>
+                                    <div class="mt-2">
+                                        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Área Principal</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dom-area-card clickable-card" onclick="showDomAreaDetail('noc')">
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-3 rounded-lg mr-3">
+                                    <i class="fas fa-desktop text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">NOC</h4>
+                                    <p class="text-gray-600 text-sm mt-1">Network Operations Center</p>
+                                    <div class="mt-2">
+                                        <span class="inline-block bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Monitoramento 24/7</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dom-area-card clickable-card" onclick="showDomAreaDetail('dsi')">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-lg mr-3">
+                                    <i class="fas fa-database text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">DSI</h4>
+                                    <p class="text-gray-600 text-sm mt-1">Direcção de Sistemas de Informação</p>
+                                    <div class="mt-2">
+                                        <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Sistemas Internos</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Conector -->
+                    <div class="dom-connector">
+                        <div class="dom-connector-line"></div>
+                    </div>
+                    
+                    <!-- Nível 3: Mais Áreas -->
+                    <div class="dom-level-3">
+                        <div class="dom-area-card clickable-card" onclick="showDomAreaDetail('projetos-clientes')">
+                            <div class="flex items-start">
+                                <div class="bg-yellow-100 p-3 rounded-lg mr-3">
+                                    <i class="fas fa-project-diagram text-yellow-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Projectos (Clientes Externos – AM)</h4>
+                                    <p class="text-gray-600 text-sm mt-1">Gestão de Projectos para Clientes Externos</p>
+                                    <div class="mt-2">
+                                        <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">Account Management</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dom-area-card clickable-card" onclick="showDomAreaDetail('i-m-acessos')">
+                            <div class="flex items-start">
+                                <div class="bg-red-100 p-3 rounded-lg mr-3">
+                                    <i class="fas fa-tools text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Segurança, Instalação e Manutenção de Acessos (I&M Acessos)</h4>
+                                    <p class="text-gray-600 text-sm mt-1">Instalação e manutenção de acessos com foco em segurança</p>
+                                    <div class="mt-2">
+                                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded">Field Operations</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Conector -->
+                    <div class="dom-connector">
+                        <div class="dom-connector-line"></div>
+                    </div>
+                    
+                    <!-- Nível 4: Últimas Áreas -->
+                    <div class="dom-level-3">
+                        <div class="dom-area-card clickable-card" onclick="showDomAreaDetail('projetos-engenharia')">
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-lg mr-3">
+                                    <i class="fas fa-cogs text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Projectos e Engenharia da Rede</h4>
+                                    <p class="text-gray-600 text-sm mt-1">Projectos de engenharia e desenvolvimento de rede</p>
+                                    <div class="mt-2">
+                                        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Network Engineering</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dom-area-card clickable-card" onclick="showDomAreaDetail('i-m-rede')">
+                            <div class="flex items-start">
+                                <div class="bg-teal-100 p-3 rounded-lg mr-3">
+                                    <i class="fas fa-network-wired text-teal-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">I&M Rede</h4>
+                                    <p class="text-gray-600 text-sm mt-1">Instalação e Manutenção da Rede</p>
+                                    <div class="mt-2">
+                                        <span class="inline-block bg-teal-100 text-teal-800 text-xs px-2 py-1 rounded">Network Operations</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Infraestruturas e Sistemas Informáticos -->
+                    <div class="infraestrutura-section mt-12">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-500 text-white p-3 rounded-lg mr-4">
+                                <i class="fas fa-server text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-800">Infraestruturas e Sistemas Informáticos</h3>
+                                <p class="text-gray-700 mt-1">Área integrada que engloba gestão e suporte de sistemas internos e externos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white rounded-lg p-4 shadow">
+                                <div class="flex items-center">
+                                    <div class="bg-blue-100 p-2 rounded-lg mr-3">
+                                        <i class="fas fa-laptop-house text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Gestão e Suporte Interno dos Sistemas</h4>
+                                        <p class="text-gray-600 text-sm mt-1">Suporte técnico interno e gestão de sistemas corporativos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4 shadow">
+                                <div class="flex items-center">
+                                    <div class="bg-green-100 p-2 rounded-lg mr-3">
+                                        <i class="fas fa-globe text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Gestão e Suporte Externo dos Sistemas</h4>
+                                        <p class="text-gray-600 text-sm mt-1">Suporte técnico externo e gestão de sistemas cliente</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- DOM Objectives and Goals -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-8 mt-12 slide-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Objetivos Estratégicos da DOM 2026</h3>
                     <div class="space-y-6">
                         <div class="flex items-start">
-                            <div class="bg-indigo-100 text-indigo-800 rounded-full p-2 mr-4 mt-1">
+                            <div class="bg-green-100 text-green-800 rounded-full p-2 mr-4 mt-1">
                                 <i class="fas fa-bullseye"></i>
                             </div>
                             <div class="flex-1">
-                                <h4 class="font-semibold text-gray-800">Implementação do Plano 5G Nacional</h4>
-                                <p class="text-gray-700 mt-1">Expandir cobertura 5G para 100% das capitais e 70% das cidades com mais de 100k habitantes até Q4 2026.</p>
+                                <h4 class="font-semibold text-gray-800">Garantir 99.95% de Disponibilidade da Rede</h4>
+                                <p class="text-gray-700 mt-1">Implementar sistemas redundantes e processos de manutenção preventiva para garantir disponibilidade máxima da rede.</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="bg-indigo-100 text-indigo-800 rounded-full p-2 mr-4 mt-1">
+                            <div class="bg-green-100 text-green-800 rounded-full p-2 mr-4 mt-1">
                                 <i class="fas fa-bullseye"></i>
                             </div>
                             <div class="flex-1">
-                                <h4 class="font-semibold text-gray-800">Migração para Cloud Híbrida</h4>
-                                <p class="text-gray-700 mt-1">Transferir 60% da infraestrutura crítica para ambiente cloud híbrido com redundância nacional e internacional.</p>
+                                <h4 class="font-semibold text-gray-800">Reduzir Tempo Médio de Reparo em 30%</h4>
+                                <p class="text-gray-700 mt-1">Implementar sistema de gestão de ativos e equipes especializadas para resposta rápida a incidentes.</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="bg-indigo-100 text-indigo-800 rounded-full p-2 mr-4 mt-1">
+                            <div class="bg-green-100 text-green-800 rounded-full p-2 mr-4 mt-1">
                                 <i class="fas fa-bullseye"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-800">Centro de Inovação em IA</h4>
-                                <p class="text-gray-700 mt-1">Estabelecer centro de excelência em Inteligência Artificial com foco em otimização de rede e atendimento ao cliente.</p>
+                                <h4 class="font-semibold text-gray-800">Implementar NOC de Nova Geração</h4>
+                                <p class="text-gray-700 mt-1">Modernizar o Network Operations Center com tecnologias de monitoramento em tempo real e inteligência artificial.</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="bg-indigo-100 text-indigo-800 rounded-full p-2 mr-4 mt-1">
+                            <div class="bg-green-100 text-green-800 rounded-full p-2 mr-4 mt-1">
                                 <i class="fas fa-bullseye"></i>
                             </div>
                             <div class="flex-1">
-                                <h4 class="font-semibold text-gray-800">Cibersegurança Avançada</h4>
-                                <p class="text-gray-700 mt-1">Implementar sistema de proteção contra ameaças cibernéticas de última geração com monitoramento 24/7.</p>
+                                <h4 class="font-semibold text-gray-800">Otimizar Experiência do Cliente</h4>
+                                <p class="text-gray-700 mt-1">Através do Comité de Planeamento, implementar melhorias baseadas em feedback dos clientes.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- CTO Metrics -->
-                <div class="bg-gradient-to-r from-indigo-50 to-gray-50 rounded-xl shadow-lg p-6 slide-in">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Metas da Direcção de Tecnologia</h3>
+                <!-- DOM Metrics -->
+                <div class="bg-gradient-to-r from-green-50 to-gray-50 rounded-xl shadow-lg p-6 slide-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">KPIs da Direcção de Operação e Manutenção</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div class="bg-white rounded-xl shadow p-5">
                             <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-gray-800">Cobertura 5G</h4>
-                                <span class="bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 100% capitais</span>
-                            </div>
-                            <div class="mb-2 flex justify-between">
-                                <span class="text-sm text-gray-600">Progresso</span>
-                                <span class="text-sm font-semibold">45%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="h-2.5 rounded-full bg-blue-500" style="width: 45%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-white rounded-xl shadow p-5">
-                            <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-gray-800">Migração Cloud</h4>
-                                <span class="bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 60%</span>
-                            </div>
-                            <div class="mb-2 flex justify-between">
-                                <span class="text-sm text-gray-600">Progresso</span>
-                                <span class="text-sm font-semibold">25%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="h-2.5 rounded-full bg-yellow-500" style="width: 25%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-white rounded-xl shadow p-5">
-                            <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-gray-800">Disponibilidade Rede</h4>
-                                <span class="bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 99.95%</span>
+                                <h4 class="font-bold text-gray-800">Disponibilidade da Rede</h4>
+                                <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 99.95%</span>
                             </div>
                             <div class="mb-2 flex justify-between">
                                 <span class="text-sm text-gray-600">Progresso</span>
@@ -467,156 +738,313 @@
                                 <div class="h-2.5 rounded-full bg-green-500" style="width: 99.2%"></div>
                             </div>
                         </div>
+                        
+                        <div class="bg-white rounded-xl shadow p-5">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-bold text-gray-800">Tempo Médio de Reparo (MTTR)</h4>
+                                <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 2h</span>
+                            </div>
+                            <div class="mb-2 flex justify-between">
+                                <span class="text-sm text-gray-600">Atual</span>
+                                <span class="text-sm font-semibold">3.2h</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="h-2.5 rounded-full bg-yellow-500" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow p-5">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-bold text-gray-800">Satisfação do Cliente (NPS)</h4>
+                                <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 85</span>
+                            </div>
+                            <div class="mb-2 flex justify-between">
+                                <span class="text-sm text-gray-600">Progresso</span>
+                                <span class="text-sm font-semibold">78</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div class="h-2.5 rounded-full bg-blue-500" style="width: 91.7%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- CEO Detail View -->
-            <div id="ceoDetail" class="hidden">
-                <!-- CEO header -->
+            <!-- DDI Organizational Chart View -->
+            <div id="ddiOrgChartView" class="hidden">
+                <!-- DDI Header -->
                 <div class="mb-10 fade-in">
-                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r from-blue-900 to-blue-700 text-white rounded-xl shadow-lg p-6">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-ddi-gradient text-white rounded-xl shadow-lg p-6">
                         <div class="flex items-center mb-4 md:mb-0">
                             <div class="bg-white bg-opacity-20 p-4 rounded-xl mr-4">
-                                <i class="fas fa-crown text-3xl text-yellow-300"></i>
+                                <i class="fas fa-lightbulb text-3xl text-yellow-300"></i>
                             </div>
                             <div>
-                                <h2 class="text-3xl font-bold">Direcção Executiva (CEO)</h2>
-                                <p class="text-blue-200 mt-1">Visão estratégica e liderança corporativa</p>
+                                <h2 class="text-3xl font-bold">Direcção de Desenho e Inovação (DDI)</h2>
+                                <p class="text-ddi-light mt-1">Inovação e desenvolvimento de sistemas</p>
                                 <div class="flex items-center mt-3">
                                     <i class="fas fa-user-tie mr-2"></i>
-                                    <span class="font-semibold">CEO: Eng. Kussi Bernardo</span>
+                                    <span class="font-semibold">Director: Eng. João Martins</span>
                                 </div>
                             </div>
                         </div>
                         <div class="text-center md:text-right">
-                            <p class="text-xl italic">"Liderando a transformação digital"</p>
+                            <p class="text-xl italic">"Inovação que Transforma"</p>
                             <div class="mt-3">
-                                <span class="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-lg font-semibold">Visão 2026</span>
+                                <span class="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-lg font-semibold">Estrutura Funcional 2026</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- CEO Vision -->
-                <div class="mb-12">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Visão Estratégica</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white rounded-lg shadow-md p-6">
-                            <div class="flex items-start">
-                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                                    <i class="fas fa-bullseye text-blue-600"></i>
+                <!-- Organograma da DDI -->
+                <div class="ddi-org-chart">
+                    <!-- Nível 1: Director -->
+                    <div class="ddi-level-1">
+                        <div class="bg-ddi-gradient text-white p-6 rounded-xl shadow-lg department-card w-80">
+                            <div class="text-center">
+                                <i class="fas fa-user-tie text-2xl mb-2 text-yellow-300"></i>
+                                <h3 class="text-xl font-bold">Director de Desenho e Inovação</h3>
+                                <p class="text-ddi-light text-sm mt-1">Eng. João Martins</p>
+                                <div class="mt-3">
+                                    <span class="inline-block bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">Liderança Estratégica</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Conector -->
+                    <div class="ddi-connector">
+                        <div class="ddi-connector-line"></div>
+                    </div>
+                    
+                    <!-- Nível 2: Chefe de Departamento -->
+                    <div class="ddi-level-2">
+                        <div class="chefe-departamento-card">
+                            <div class="flex items-center">
+                                <div class="bg-indigo-500 text-white p-3 rounded-lg mr-4">
+                                    <i class="fas fa-user-cog text-xl"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-lg text-gray-800">Missão</h4>
-                                    <p class="text-gray-700 mt-2">Conectar pessoas e empresas através de soluções tecnológicas inovadoras, oferecendo serviços de telecomunicações de excelência que impulsionam o desenvolvimento econômico e social.</p>
+                                    <h3 class="text-xl font-bold text-gray-800">Chefe de Departamento</h3>
+                                    <p class="text-gray-700 mt-1">Responsável pela coordenação global da direção</p>
+                                    <div class="mt-2">
+                                        <span class="inline-block bg-indigo-100 text-indigo-800 text-sm px-3 py-1 rounded-full">Coordenador: Mafuta David</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Conector -->
+                    <div class="ddi-connector">
+                        <div class="ddi-connector-line"></div>
+                    </div>
+                    
+                    <!-- Nível 3: Três Áreas Principais -->
+                    <div class="ddi-level-3">
+                        <!-- Departamento de Desenvolvimento de Produtos -->
+                        <div class="ddi-area-card clickable-card" onclick="showAreaDetail('ddp')">
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-4 rounded-xl mr-4">
+                                    <i class="fas fa-cube text-purple-600 text-xl"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-gray-800 text-lg">DDP – Departamento de Desenvolvimento de Produtos</h4>
+                                    <p class="text-gray-600 mt-2">Pesquisa, desenvolvimento e lançamento de novos produtos e serviços</p>
+                                    <div class="mt-4">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-user-circle text-gray-500 mr-2"></i>
+                                            <span class="font-semibold text-gray-700">Responsável: Manuel Dala</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <span class="inline-block bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Inovação de Produtos</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="bg-white rounded-lg shadow-md p-6">
+                        <!-- Departamento de Plataformas e Prototipagem -->
+                        <div class="ddi-area-card clickable-card" onclick="showAreaDetail('dpp')">
                             <div class="flex items-start">
-                                <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                                    <i class="fas fa-eye text-blue-600"></i>
+                                <div class="bg-blue-100 p-4 rounded-xl mr-4">
+                                    <i class="fas fa-server text-blue-600 text-xl"></i>
                                 </div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-gray-800">Visão 2026</h4>
-                                    <p class="text-gray-700 mt-2">Ser reconhecida como a principal empresa de telecomunicações do país, referência em inovação tecnológica, qualidade de serviço e sustentabilidade empresarial.</p>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-gray-800 text-lg">DPP – Departamento de Plataformas e Prototipagem</h4>
+                                    <p class="text-gray-600 mt-2">Desenvolvimento de plataformas tecnológicas e protótipos inovadores</p>
+                                    <div class="mt-4">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-user-circle text-gray-500 mr-2"></i>
+                                            <span class="font-semibold text-gray-700">Responsável: Mafuta David</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Plataformas Tecnológicas</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Coordenação de Projectos -->
+                        <div class="ddi-area-card clickable-card" onclick="showAreaDetail('coordenacao-projetos')">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-4 rounded-xl mr-4">
+                                    <i class="fas fa-project-diagram text-green-600 text-xl"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-gray-800 text-lg">Coordenação de Projectos</h4>
+                                    <p class="text-gray-600 mt-2">Gestão e coordenação de todos os projetos de inovação e desenvolvimento</p>
+                                    <div class="mt-4">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-user-circle text-gray-500 mr-2"></i>
+                                            <span class="font-semibold text-gray-700">Responsável: Francisca da Costa</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">Gestão de Projectos</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- CEO Objectives -->
-                <div class="bg-white rounded-xl shadow-lg p-6 mb-8 slide-in">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Diretrizes Estratégicas 2026</h3>
+                <!-- Seção de Inovação -->
+                <div class="innovation-section mt-12">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-purple-500 text-white p-3 rounded-lg mr-4">
+                            <i class="fas fa-rocket text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Foco em Inovação</h3>
+                            <p class="text-gray-700 mt-1">A DDI concentra-se em três pilares principais para impulsionar a transformação digital da Multitel</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg p-5 shadow">
+                            <div class="flex flex-col items-center text-center">
+                                <div class="bg-purple-100 p-3 rounded-full mb-3">
+                                    <i class="fas fa-cubes text-purple-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800">Desenvolvimento de Produtos</h4>
+                                <p class="text-gray-600 text-sm mt-2">Criação de novos produtos e serviços inovadores para o mercado</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-5 shadow">
+                            <div class="flex flex-col items-center text-center">
+                                <div class="bg-blue-100 p-3 rounded-full mb-3">
+                                    <i class="fas fa-microchip text-blue-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800">Plataformas Tecnológicas</h4>
+                                <p class="text-gray-600 text-sm mt-2">Desenvolvimento de plataformas robustas e protótipos avançados</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-5 shadow">
+                            <div class="flex flex-col items-center text-center">
+                                <div class="bg-green-100 p-3 rounded-full mb-3">
+                                    <i class="fas fa-tasks text-green-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-800">Gestão de Projectos</h4>
+                                <p class="text-gray-600 text-sm mt-2">Coordenação eficiente de projetos de inovação e desenvolvimento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- DDI Objectives and Goals -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-8 mt-12 slide-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Objetivos Estratégicos da DDI 2026</h3>
                     <div class="space-y-6">
                         <div class="flex items-start">
-                            <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-4 mt-1">
-                                <i class="fas fa-chart-line"></i>
+                            <div class="bg-purple-100 text-purple-800 rounded-full p-2 mr-4 mt-1">
+                                <i class="fas fa-bullseye"></i>
                             </div>
                             <div class="flex-1">
-                                <h4 class="font-semibold text-gray-800">Crescimento Sustentável</h4>
-                                <p class="text-gray-700 mt-1">Aumentar a participação de mercado em 25% mantendo margens saudáveis e qualidade superior de serviço.</p>
+                                <h4 class="font-semibold text-gray-800">Lançar 5 Novos Produtos Inovadores</h4>
+                                <p class="text-gray-700 mt-1">Desenvolver e lançar 5 novos produtos ou serviços tecnológicos até o final de 2026.</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-4 mt-1">
-                                <i class="fas fa-lightbulb"></i>
+                            <div class="bg-purple-100 text-purple-800 rounded-full p-2 mr-4 mt-1">
+                                <i class="fas fa-bullseye"></i>
                             </div>
                             <div class="flex-1">
-                                <h4 class="font-semibold text-gray-800">Inovação Contínua</h4>
-                                <p class="text-gray-700 mt-1">Investir 15% do faturamento em P&D para manter liderança tecnológica e antecipar tendências do mercado.</p>
+                                <h4 class="font-semibold text-gray-800">Desenvolver Plataforma de Inovação Aberta</h4>
+                                <p class="text-gray-700 mt-1">Criar uma plataforma que permita colaboração em inovação com parceiros e clientes.</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-4 mt-1">
-                                <i class="fas fa-users"></i>
+                            <div class="bg-purple-100 text-purple-800 rounded-full p-2 mr-4 mt-1">
+                                <i class="fas fa-bullseye"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-800">Excelência Organizacional</h4>
-                                <p class="text-gray-700 mt-1">Desenvolver talentos internos e fortalecer a cultura corporativa baseada em resultados e inovação.</p>
+                                <h4 class="font-semibold text-gray-800">Implementar Processo Ágil de Desenvolvimento</h4>
+                                <p class="text-gray-700 mt-1">Adotar metodologias ágeis para reduzir tempo de desenvolvimento em 30%.</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start">
-                            <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-4 mt-1">
-                                <i class="fas fa-handshake"></i>
+                            <div class="bg-purple-100 text-purple-800 rounded-full p-2 mr-4 mt-1">
+                                <i class="fas fa-bullseye"></i>
                             </div>
                             <div class="flex-1">
-                                <h4 class="font-semibold text-gray-800">Sustentabilidade</h4>
-                                <p class="text-gray-700 mt-1">Implementar práticas ESG (Environmental, Social, Governance) em todas as operações da empresa.</p>
+                                <h4 class="font-semibold text-gray-800">Criar Centro de Prototipagem Rápida</h4>
+                                <p class="text-gray-700 mt-1">Estabelecer laboratório para prototipagem rápida de soluções tecnológicas.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- CEO Metrics -->
-                <div class="bg-gradient-to-r from-blue-50 to-gray-50 rounded-xl shadow-lg p-6 slide-in">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Indicadores de Performance Corporativa</h3>
+                <!-- DDI Metrics -->
+                <div class="bg-gradient-to-r from-purple-50 to-gray-50 rounded-xl shadow-lg p-6 slide-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">KPIs da Direcção de Desenho e Inovação</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div class="bg-white rounded-xl shadow p-5">
                             <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-gray-800">Faturamento Total</h4>
-                                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: R$ 500M</span>
+                                <h4 class="font-bold text-gray-800">Novos Produtos Lançados</h4>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 5</span>
                             </div>
                             <div class="mb-2 flex justify-between">
                                 <span class="text-sm text-gray-600">Progresso</span>
-                                <span class="text-sm font-semibold">65%</span>
+                                <span class="text-sm font-semibold">2</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="h-2.5 rounded-full bg-green-500" style="width: 65%"></div>
+                                <div class="h-2.5 rounded-full bg-purple-500" style="width: 40%"></div>
                             </div>
                         </div>
                         
                         <div class="bg-white rounded-xl shadow p-5">
                             <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-gray-800">Satisfação do Cliente</h4>
-                                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 95%</span>
+                                <h4 class="font-bold text-gray-800">Patentes Registradas</h4>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 3</span>
                             </div>
                             <div class="mb-2 flex justify-between">
                                 <span class="text-sm text-gray-600">Progresso</span>
-                                <span class="text-sm font-semibold">88%</span>
+                                <span class="text-sm font-semibold">1</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="h-2.5 rounded-full bg-blue-500" style="width: 88%"></div>
+                                <div class="h-2.5 rounded-full bg-blue-500" style="width: 33%"></div>
                             </div>
                         </div>
                         
                         <div class="bg-white rounded-xl shadow p-5">
                             <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-gray-800">Investimento em P&D</h4>
-                                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: 15%</span>
+                                <h4 class="font-bold text-gray-800">Tempo de Desenvolvimento</h4>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: -30%</span>
                             </div>
                             <div class="mb-2 flex justify-between">
                                 <span class="text-sm text-gray-600">Progresso</span>
-                                <span class="text-sm font-semibold">12%</span>
+                                <span class="text-sm font-semibold">-15%</span>
                             </div>
                             <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="h-2.5 rounded-full bg-yellow-500" style="width: 80%"></div>
+                                <div class="h-2.5 rounded-full bg-green-500" style="width: 50%"></div>
                             </div>
                         </div>
                     </div>
@@ -649,143 +1077,295 @@
         const companyData = {
             companyName: "Multitel",
             year: "2026",
-            departments: [
+            
+            // Governança e Direcção
+            governance: [
                 {
-                    id: "commercial",
-                    name: "Comercial",
-                    icon: "fa-chart-line",
-                    color: "from-blue-600 to-blue-400",
-                    description: "Responsável pelas vendas, marketing e relacionamento com clientes",
-                    manager: "Edna Dias",
-                    slogan: "Expandindo mercados, conquistando clientes",
-                    subDepartments: [
-                        { name: "Vendas Corporativas", manager: "Carlos Mendes" },
-                        { name: "Marketing Digital", manager: "Ana Costa" },
-                        { name: "Atendimento ao Cliente", manager: "Fernanda Lima" },
-                        { name: "Novos Negócios", manager: "Ricardo Alves" }
+                    id: "dg",
+                    name: "Direcção Geral (DG)",
+                    icon: "fa-user-tie",
+                    color: "from-blue-900 to-blue-700",
+                    description: "Liderança executiva e gestão operacional",
+                    manager: "Director Geral: Eng. Kussi Bernardo",
+                    slogan: "Liderança Executiva",
+                    subAreas: [
+                        { name: "Director Geral", manager: "Eng. Kussi Bernardo" },
+                        { name: "CTO", manager: "Eng. Leonel Augusto" },
                     ],
                     objectives: [
-                        "Aumentar market share em 15% nos segmentos corporativo e residencial",
-                        "Expandir presença para 3 novas regiões metropolitanas",
-                        "Lançar 2 novos pacotes de serviços premium",
-                        "Implementar sistema de CRM integrado para melhor acompanhamento de leads"
+                        "Implementar estratégia corporativa aprovada pelo CG",
+                        "Liderar transformação digital da empresa",
+                        "Garantir eficiência operacional e financeira",
+                        "Desenvolver talentos e cultura organizacional"
                     ],
                     metrics: [
-                        { name: "Faturamento", target: "R$ 120M", progress: 65 },
-                        { name: "Novos Clientes", target: "25.000", progress: 40 },
-                        { name: "Satisfação do Cliente", target: "92%", progress: 85 },
-                        { name: "Taxa de Retenção", target: "95%", progress: 90 },
-                        { name: "Leads Qualificados", target: "50.000", progress: 70 },
-                        { name: "Cobertura Geográfica", target: "15 estados", progress: 80 }
+                        { name: "EBITDA Margin", target: "28%", progress: 25 },
+                        { name: "Satisfação Colaboradores", target: "85%", progress: 78 },
+                        { name: "Crescimento Market Share", target: "15%", progress: 10 },
+                        { name: "Taxa Inovação", target: "10% receita", progress: 7 }
                     ]
                 },
                 {
-                    id: "technical",
-                    name: "Técnico & Operações",
-                    icon: "fa-network-wired",
-                    color: "from-green-600 to-green-400",
-                    description: "Responsável pela infraestrutura, rede e qualidade dos serviços",
-                    manager: "Bertson Sebastião",
-                    slogan: "Excelência técnica, operação sem falhas",
-                    subDepartments: [
-                        { name: "Engenharia de Rede", manager: "Roberto Andrade" },
-                        { name: "Operações Técnicas", manager: "Sérgio Moura" },
-                        { name: "Suporte Técnico", manager: "Patrícia Nunes" },
-                        { name: "Qualidade de Serviço", manager: "Marcos Silva" }
+                    id: "csi",
+                    name: "Comité de Segurança Interna",
+                    icon: "fa-shield-alt",
+                    color: "from-red-700 to-red-500",
+                    description: "Gestão de segurança, riscos e compliance",
+                    manager: "Coordenador: Maj. João Silva",
+                    slogan: "Segurança e Conformidade",
+                    subAreas: [
+                        { name: "Segurança Física", manager: "Cap. Miguel Costa" },
+                        { name: "Segurança da Informação", manager: "Eng. Sofia Martins" },
+                        { name: "Gestão de Riscos", manager: "Dra. Ana Pereira" },
+                        { name: "Compliance", manager: "Dr. Carlos Mendes" }
                     ],
                     objectives: [
-                        "Implementar rede 5G em todas as capitais até Q3 2026",
-                        "Reduzir tempo médio de reparo em 30%",
-                        "Atingir 99,9% de disponibilidade da rede principal",
-                        "Migrar 40% da infraestrutura para virtualização"
+                        "Implementar sistema integrado de gestão de segurança",
+                        "Garantir conformidade com regulamentações setoriais",
+                        "Reduzir incidentes de segurança em 40%",
+                        "Implementar programa de continuidade de negócios"
                     ],
                     metrics: [
-                        { name: "Disponibilidade da Rede", target: "99,9%", progress: 99 },
-                        { name: "Tempo Médio de Reparo", target: "2h", progress: 60 },
-                        { name: "Cobertura 5G", target: "100% capitais", progress: 45 },
-                        { name: "Virtualização", target: "40%", progress: 25 },
-                        { name: "Latência Média", target: "< 20ms", progress: 90 },
-                        { name: "Chamados Resolvidos", target: "98%", progress: 96 }
+                        { name: "Incidentes Segurança", target: "Redução 40%", progress: 25 },
+                        { name: "Conformidade", target: "100%", progress: 90 },
+                        { name: "Tempo Resposta", target: "< 2h", progress: 75 },
+                        { name: "Testes Realizados", target: "12/ano", progress: 8 }
                     ]
                 },
                 {
-                    id: "rh",
-                    name: "Recursos Humanos",
-                    icon: "fa-users",
-                    color: "from-purple-600 to-purple-400",
-                    description: "Gestão de pessoas, desenvolvimento e cultura organizacional",
-                    manager: "Sanza Adão",
-                    slogan: "Pessoas em primeiro lugar, sempre",
-                    subDepartments: [
-                        { name: "Recrutamento & Seleção", manager: "Beatriz Santos" },
-                        { name: "Desenvolvimento Organizacional", manager: "Rafael Costa" },
-                        { name: "Benefícios & Remuneração", manager: "Juliana Almeida" },
-                        { name: "Relações Trabalhistas", manager: "Paulo Henrique" }
+                    id: "gga",
+                    name: "Gabinete Geral de Apoio (GGA)",
+                    icon: "fa-headset",
+                    color: "from-indigo-700 to-indigo-500",
+                    description: "Suporte executivo e administrativo à Direcção Geral",
+                    manager: "Chefe do GGA: Dra. Suzana Diogo",
+                    slogan: "Suporte Executivo Integral",
+                    subAreas: [
+                        { name: "Assessores da Administração", manager: "3 Assessores" },
+                        { name: "Comunicação, Marketing e Eventos", manager: "Dir. Edna Dias" },
+                        { name: "Capital Humano", manager: "Coord. Sanza Adão" },
+                        { name: "Unidade de Auditoria e Controlo", manager: "Coord. Iosmara Cascais" }
                     ],
                     objectives: [
-                        "Reduzir turnover em 20% através de programas de retenção",
-                        "Implementar plano de carreira para todas as posições",
-                        "Capacitar 100% dos colaboradores em transformação digital",
-                        "Aumentar satisfação interna para 85% no índice de clima organizacional"
+                        "Otimizar processos de apoio à Direcção Geral",
+                        "Garantir comunicação corporativa eficaz",
+                        "Assegurar conformidade legal em todas as operações",
+                        "Implementar sistema de auditoria interna"
                     ],
                     metrics: [
-                        { name: "Satisfação Interna", target: "85%", progress: 78 },
-                        { name: "Taxa de Turnover", target: "12%", progress: 50 },
-                        { name: "Treinamentos Concluídos", target: "100%", progress: 65 },
-                        { name: "Plano de Carreira", target: "100% cargos", progress: 40 },
-                        { name: "Tempo de Contratação", target: "30 dias", progress: 70 },
-                        { name: "Avaliações de Desempenho", target: "100%", progress: 90 }
-                    ]
-                },
-                {
-                    id: "finance",
-                    name: "Financeiro & Controladoria",
-                    icon: "fa-chart-pie",
-                    color: "from-yellow-600 to-yellow-400",
-                    description: "Gestão financeira, orçamento e controle patrimonial",
-                    manager: "Afonso Vita",
-                    slogan: "Gestão eficiente, resultados sustentáveis",
-                    subDepartments: [
-                        { name: "Controladoria", manager: "Luciana Freitas" },
-                        { name: "Tesouraria", manager: "Gustavo Noronha" },
-                        { name: "Orçamento", manager: "Fábio Queiroz" },
-                        { name: "Contabilidade", manager: "Mariana Pinheiro" }
-                    ],
-                    objectives: [
-                        "Reduzir custos operacionais em 8% sem impactar qualidade",
-                        "Implementar sistema de BI para análise financeira em tempo real",
-                        "Aumentar margem EBITDA para 28%",
-                        "Otimizar capital de giro reduzindo ciclo financeiro em 15 dias"
-                    ],
-                    metrics: [
-                        { name: "Margem EBITDA", target: "28%", progress: 24 },
-                        { name: "Redução de Custos", target: "8%", progress: 30 },
-                        { name: "Ciclo Financeiro", target: "45 dias", progress: 65 },
-                        { name: "ROI Projetos", target: "15%", progress: 70 },
-                        { name: "Relatórios Automatizados", target: "80%", progress: 55 },
-                        { name: "Conformidade Fiscal", target: "100%", progress: 95 }
+                        { name: "Satisfação Interna", target: "90%", progress: 85 },
+                        { name: "Tempo Processos", target: "-30%", progress: 20 },
+                        { name: "Comunicações Realizadas", target: "100% planejadas", progress: 95 },
+                        { name: "Auditorias Concluídas", target: "100%", progress: 80 }
                     ]
                 }
+            ],
+            
+            // Direções Funcionais - ATUALIZADO
+            directions: [
+                {
+                    id: "dom",
+                    name: "Direcção de Operação e Manutenção (DOM)",
+                    icon: "fa-network-wired",
+                    color: "from-green-700 to-green-500",
+                    description: "Gestão técnica, operações de rede e manutenção",
+                    manager: "Director: Bertson Sebastião",
+                    slogan: "Excelência Técnica, Operação sem Falhas",
+                    subAreas: [
+                        { name: "GOR / GTE", manager: "Eng. Adão" },
+                        { name: "NOC (Network Operations Center)", manager: "Coord. Firmino China" },
+                        { name: "DSI", manager: "Eng. Adelino Jopilu" },
+                        { name: "Projectos (Clientes Externos – AM)", manager: "Eng. Ana Pereira" },
+                        { name: "Segurança, Instalação e Manutenção de Acessos", manager: "Eng. João Silva" },
+                        { name: "Projectos e Engenharia da Rede", manager: "Eng. Jone Agostinho" },
+                        { name: "I&M Rede", manager: "Eng. Roberto Andrade" },
+                    ],
+                    objectives: [
+                        "Garantir 99.95% de disponibilidade da rede principal",
+                        "Reduzir tempo médio de reparo em 30%",
+                        "Implementar NOC de nova geração com monitoramento proativo",
+                        "Otimizar experiência do cliente através do Comité de Planeamento"
+                    ],
+                    metrics: [
+                        { name: "Disponibilidade Rede", target: "99.95%", progress: 99.2 },
+                        { name: "Tempo Médio Reparo (MTTR)", target: "2h", progress: 60 },
+                        { name: "Satisfação Cliente (NPS)", target: "85", progress: 78 },
+                        { name: "Incidentes Críticos", target: "Redução 40%", progress: 25 }
+                    ],
+                    hasDetailedOrgChart: true
+                },
+                {
+                    id: "comercial",
+                    name: "Direcção de Marketing e Negócios (DMN)",
+                    icon: "fa-chart-line",
+                    color: "from-blue-600 to-blue-400",
+                    description: "Vendas, marketing e relacionamento com clientes",
+                    manager: "Directora: Edna Dias",
+                    slogan: "Expandindo Mercados, Conquistando Clientes",
+                    subAreas: [
+                        { name: "Vendas", manager: "Coord. Lázaro Chivinda" },
+                        { name: "Marketing e Fidelização", manager: "Coord. Odélia Chimuco" },
+                    ],
+                    objectives: [
+                        "Aumentar market share em 15%",
+                        "Expandir para 5 novas regiões",
+                        "Lançar 3 novos pacotes de serviços",
+                        "Implementar CRM integrado"
+                    ],
+                    metrics: [
+                        { name: "Faturamento", target: "R$ 150M", progress: 65 },
+                        { name: "Novos Clientes", target: "30.000", progress: 40 },
+                        { name: "Satisfação Cliente", target: "92%", progress: 88 },
+                        { name: "Taxa Retenção", target: "95%", progress: 91 }
+                    ]
+                },
+                {
+                    id: "daf",
+                    name: "Direcção Administrativa e Financeira (DAF)",
+                    icon: "fa-users-cog",
+                    color: "from-purple-600 to-purple-400",
+                    description: "Gestão administrativa, financeira e recursos humanos",
+                    manager: "Director: Dr. Afonso Vita",
+                    slogan: "Gestão Eficiente",
+                    subAreas: [
+                        { name: "Contabilidade", manager: "Coord. César Bimbe" },
+                        { name: "Tesouraria", manager: "Sr. Gustavo Noronha" },
+                        { name: "Cobranças", manager: "Sra. Luciana Freitas" },
+                        { name: "Facturação", manager: "Sr. Fábio Queiroz" }
+                    ],
+                    objectives: [
+                        "Reduzir custos operacionais em 10%",
+                        "Implementar sistema integrado de gestão",
+                        "Reduzir turnover em 20%",
+                    ],
+                    metrics: [
+                        { name: "Redução Custos", target: "10%", progress: 35 },
+                        { name: "Turnover", target: "12%", progress: 50 },
+                        { name: "Eficiência Processos", target: "+25%", progress: 40 }
+                    ]
+                },
+                {
+                    id: "ddi",
+                    name: "Direcção de Desenho e Inovação (DDI)",
+                    icon: "fa-lightbulb",
+                    color: "from-purple-700 to-purple-500",
+                    description: "Inovação e desenvolvimento de sistemas",
+                    manager: "Director: Eng. João Martins",
+                    slogan: "Inovação que Transforma",
+                    subAreas: [
+                        { name: "Chefe de Departamento", manager: "Mafuta David" },
+                        { name: "DDP – Departamento de Desenvolvimento de Produtos", manager: "Manuel Dala" },
+                        { name: "DPP – Departamento de Plataformas e Prototipagem", manager: "Mafuta David" },
+                        { name: "Coordenação de Projectos", manager: "Francisca da Costa" }
+                    ],
+                    objectives: [
+                        "Lançar 5 novos produtos inovadores até 2026",
+                        "Desenvolver plataforma de inovação aberta",
+                        "Implementar processo ágil de desenvolvimento",
+                        "Criar centro de prototipagem rápida"
+                    ],
+                    metrics: [
+                        { name: "Novos Produtos Lançados", target: "5", progress: 40 },
+                        { name: "Patentes Registradas", target: "3", progress: 33 },
+                        { name: "Tempo de Desenvolvimento", target: "-30%", progress: 50 },
+                        { name: "Inovações Implementadas", target: "10", progress: 60 }
+                    ],
+                    hasDetailedOrgChart: true
+                }
             ]
+        };
+
+        // Áreas Detalhadas
+        const areasDetails = {
+            // Áreas da DOM
+            'gor-gte': {
+                name: "GOR / GTE",
+                fullName: "Gestão de Operações de Rede / Gestão Técnica",
+                description: "Coordenação e gestão das operações técnicas de rede",
+                manager: "Eng. Adão",
+                objectives: [
+                    "Garantir disponibilidade de rede acima de 99.9%",
+                    "Otimizar performance de rede através de monitoramento contínuo",
+                    "Coordenar equipes técnicas para resposta rápida a incidentes"
+                ]
+            },
+            'noc': {
+                name: "NOC",
+                fullName: "Network Operations Center",
+                description: "Centro de operações de rede com monitoramento 24/7",
+                manager: "Eng. Firmino China",
+                objectives: [
+                    "Monitorar toda infraestrutura de rede em tempo real",
+                    "Detectar e resolver proativamente incidentes de rede",
+                    "Gerar relatórios de performance e disponibilidade"
+                ]
+            },
+            'dsi': {
+                name: "DSI",
+                fullName: "Direcção de Sistemas de Informação",
+                description: "Gestão de sistemas de informação internos",
+                manager: "Eng. Adelino Jopilu",
+                objectives: [
+                    "Manter sistemas internos com 99.9% de disponibilidade",
+                    "Implementar melhorias nos sistemas corporativos",
+                    "Garantir segurança dos dados internos"
+                ]
+            },
+            // Áreas da DDI
+            'ddp': {
+                name: "DDP",
+                fullName: "Departamento de Desenvolvimento de Produtos",
+                description: "Pesquisa, desenvolvimento e lançamento de novos produtos e serviços",
+                manager: "Manuel Dala",
+                objectives: [
+                    "Desenvolver produtos inovadores para o mercado",
+                    "Realizar pesquisa de mercado e análise de tendências",
+                    "Gerenciar ciclo de vida completo dos produtos"
+                ]
+            },
+            'dpp': {
+                name: "DPP",
+                fullName: "Departamento de Plataformas e Prototipagem",
+                description: "Desenvolvimento de plataformas tecnológicas e protótipos inovadores",
+                manager: "Mafuta David",
+                objectives: [
+                    "Desenvolver plataformas tecnológicas robustas",
+                    "Criar protótipos para validação de conceitos",
+                    "Implementar soluções de arquitetura escalável"
+                ]
+            },
+            'coordenacao-projetos': {
+                name: "Coordenação de Projectos",
+                fullName: "Coordenação de Projectos de Inovação",
+                description: "Gestão e coordenação de todos os projetos de inovação e desenvolvimento",
+                manager: "Francisca da Costa",
+                objectives: [
+                    "Garantir entrega de projetos no prazo e orçamento",
+                    "Coordenar equipes multidisciplinares",
+                    "Implementar metodologias ágeis de gestão"
+                ]
+            }
         };
 
         // DOM elements
         const introScreen = document.getElementById('introScreen');
         const dashboard = document.getElementById('dashboard');
-        const departmentContainer = document.getElementById('departmentContainer');
+        const directionsContainer = document.getElementById('directionsContainer');
         const mainOrgChart = document.getElementById('mainOrgChart');
-        const departmentDetail = document.getElementById('departmentDetail');
-        const ctoDetail = document.getElementById('ctoDetail');
-        const ceoDetail = document.getElementById('ceoDetail');
-        const deptHeader = document.getElementById('deptHeader');
-        const subDeptContainer = document.getElementById('subDeptContainer');
+        const detailView = document.getElementById('detailView');
+        const domOrgChartView = document.getElementById('domOrgChartView');
+        const ddiOrgChartView = document.getElementById('ddiOrgChartView');
+        const detailHeader = document.getElementById('detailHeader');
+        const subAreasContainer = document.getElementById('subAreasContainer');
         const objectivesContainer = document.getElementById('objectivesContainer');
         const metricsContainer = document.getElementById('metricsContainer');
         const backToMainBtn = document.getElementById('backToMainBtn');
+        const backToDirectionsBtn = document.getElementById('backToDirectionsBtn');
         const currentDateEl = document.getElementById('currentDate');
         const footerDateEl = document.getElementById('footerDate');
-        const ceoCard = document.getElementById('ceoCard');
-        const ctoCard = document.getElementById('ctoCard');
+
+        // Current detail being shown
+        let currentDetail = null;
 
         // Initialize the dashboard
         document.addEventListener('DOMContentLoaded', function() {
@@ -798,10 +1378,6 @@
             
             // Render main organizational chart
             renderMainOrgChart();
-            
-            // Add click events to CEO and CTO cards
-            ceoCard.addEventListener('click', showCeoDetail);
-            ctoCard.addEventListener('click', showCtoDetail);
             
             // Set up intro animation
             setTimeout(() => {
@@ -818,71 +1394,135 @@
 
         // Render main organizational chart
         function renderMainOrgChart() {
-            departmentContainer.innerHTML = '';
+            // Clear containers
+            directionsContainer.innerHTML = '';
             
-            companyData.departments.forEach(dept => {
-                const departmentCard = document.createElement('div');
-                departmentCard.className = 'node-container org-line-horizontal';
+            // Render governance click events
+            companyData.governance.forEach(item => {
+                const card = document.getElementById(`${item.id}Card`);
+                if (card) {
+                    card.addEventListener('click', () => showDetail(item, 'governance'));
+                }
+            });
+            
+            // Render directions
+            companyData.directions.forEach(direction => {
+                const directionCard = document.createElement('div');
+                directionCard.className = 'node-container';
                 
-                departmentCard.innerHTML = `
-                    <div class="bg-gradient-to-r ${dept.color} text-white p-6 rounded-xl shadow-lg department-card card-hover cursor-pointer transition-all duration-300 hover:shadow-xl clickable-card" data-dept="${dept.id}">
+                directionCard.innerHTML = `
+                    <div class="bg-gradient-to-r ${direction.color} text-white p-5 rounded-xl shadow-lg department-card card-hover cursor-pointer transition-all duration-300 hover:shadow-xl clickable-card" data-id="${direction.id}" data-type="direction">
                         <div class="text-center">
-                            <i class="fas ${dept.icon} text-3xl mb-3"></i>
-                            <h3 class="text-xl font-bold">${dept.name}</h3>
-                            <p class="text-opacity-90 text-sm mt-2">${dept.description}</p>
+                            <i class="fas ${direction.icon} text-2xl mb-2"></i>
+                            <h3 class="text-lg font-bold">${direction.name}</h3>
+                            <p class="text-opacity-90 text-xs mt-1">${direction.description}</p>
                         </div>
-                        <div class="text-center mt-4">
-                            <p class="text-xs font-light">Director(a): ${dept.manager}</p>
-                            <div class="mt-3">
-                                <span class="inline-block bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">Clique para detalhes</span>
+                        <div class="text-center mt-3">
+                            <p class="text-xs font-light">${direction.manager}</p>
+                            <div class="mt-2">
+                                <span class="inline-block bg-white bg-opacity-20 px-2 py-1 rounded-full text-xs">Clique para detalhes</span>
                             </div>
                         </div>
                     </div>
                 `;
                 
-                departmentContainer.appendChild(departmentCard);
+                directionsContainer.appendChild(directionCard);
             });
             
-            // Add event listeners to department cards
-            document.querySelectorAll('[data-dept]').forEach(card => {
+            // Add event listeners to direction cards
+            document.querySelectorAll('[data-type="direction"]').forEach(card => {
                 card.addEventListener('click', function() {
-                    const deptId = this.getAttribute('data-dept');
-                    showDepartmentDetail(deptId);
+                    const id = this.getAttribute('data-id');
+                    const direction = companyData.directions.find(d => d.id === id);
+                    if (direction) {
+                        if (direction.id === 'dom' && direction.hasDetailedOrgChart) {
+                            showDomOrgChart();
+                        } else if (direction.id === 'ddi' && direction.hasDetailedOrgChart) {
+                            showDdiOrgChart();
+                        } else {
+                            showDetail(direction, 'direction');
+                        }
+                    }
                 });
             });
         }
 
-        // Show department detail view
-        function showDepartmentDetail(deptId) {
-            const department = companyData.departments.find(d => d.id === deptId);
+        // Show DOM Organizational Chart
+        function showDomOrgChart() {
+            currentDetail = { item: companyData.directions.find(d => d.id === 'dom'), type: 'direction' };
             
-            if (!department) return;
+            // Hide main org chart, show DOM org chart
+            mainOrgChart.classList.add('hidden');
+            detailView.classList.add('hidden');
+            domOrgChartView.classList.remove('hidden');
+            ddiOrgChartView.classList.add('hidden');
+            backToMainBtn.classList.remove('hidden');
+            backToDirectionsBtn.classList.remove('hidden');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show DDI Organizational Chart
+        function showDdiOrgChart() {
+            currentDetail = { item: companyData.directions.find(d => d.id === 'ddi'), type: 'direction' };
+            
+            // Hide main org chart, show DDI org chart
+            mainOrgChart.classList.add('hidden');
+            detailView.classList.add('hidden');
+            domOrgChartView.classList.add('hidden');
+            ddiOrgChartView.classList.remove('hidden');
+            backToMainBtn.classList.remove('hidden');
+            backToDirectionsBtn.classList.remove('hidden');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show detail view for any item
+        function showDetail(item, type) {
+            currentDetail = { item, type };
             
             // Hide main org chart, show detail view
             mainOrgChart.classList.add('hidden');
-            departmentDetail.classList.remove('hidden');
-            ctoDetail.classList.add('hidden');
-            ceoDetail.classList.add('hidden');
+            detailView.classList.remove('hidden');
+            domOrgChartView.classList.add('hidden');
+            ddiOrgChartView.classList.add('hidden');
             backToMainBtn.classList.remove('hidden');
+            backToDirectionsBtn.classList.add('hidden');
             
-            // Render department header
-            deptHeader.innerHTML = `
-                <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r ${department.color} text-white rounded-xl shadow-lg p-6">
+            // Set detail header based on type
+            let headerColor, headerIcon;
+            
+            if (type === 'governance') {
+                headerColor = item.color;
+                headerIcon = item.icon;
+            } else if (type === 'direction') {
+                headerColor = item.color;
+                headerIcon = item.icon;
+            } else {
+                headerColor = 'from-gray-700 to-gray-500';
+                headerIcon = item.icon || 'fa-building';
+            }
+            
+            // Render detail header
+            detailHeader.innerHTML = `
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-gradient-to-r ${headerColor} text-white rounded-xl shadow-lg p-6">
                     <div class="flex items-center mb-4 md:mb-0">
                         <div class="bg-white bg-opacity-20 p-4 rounded-xl mr-4">
-                            <i class="fas ${department.icon} text-3xl"></i>
+                            <i class="fas ${headerIcon} text-3xl"></i>
                         </div>
                         <div>
-                            <h2 class="text-3xl font-bold">Área ${department.name}</h2>
-                            <p class="text-opacity-90 mt-1">${department.description}</p>
+                            <h2 class="text-3xl font-bold">${item.name}</h2>
+                            <p class="text-opacity-90 mt-1">${item.description}</p>
                             <div class="flex items-center mt-3">
                                 <i class="fas fa-user-tie mr-2"></i>
-                                <span class="font-semibold">Director(a): ${department.manager}</span>
+                                <span class="font-semibold">${item.manager}</span>
                             </div>
                         </div>
                     </div>
                     <div class="text-center md:text-right">
-                        <p class="text-xl italic">"${department.slogan}"</p>
+                        <p class="text-xl italic">"${item.slogan || 'Excelência Operacional'}"</p>
                         <div class="mt-3">
                             <span class="inline-block bg-white bg-opacity-20 px-4 py-2 rounded-lg font-semibold">Plano Operacional 2026</span>
                         </div>
@@ -890,110 +1530,131 @@
                 </div>
             `;
             
-            // Render sub-departments
-            subDeptContainer.innerHTML = '';
-            department.subDepartments.forEach(subDept => {
-                const subDeptCard = document.createElement('div');
-                subDeptCard.className = 'bg-white rounded-lg shadow-md p-5 card-hover';
-                subDeptCard.innerHTML = `
-                    <div class="flex items-start">
-                        <div class="bg-gray-100 p-3 rounded-lg mr-4">
-                            <i class="fas fa-folder text-blue-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-lg text-gray-800">${subDept.name}</h4>
-                            <p class="text-gray-600 text-sm mt-1">Responsável: ${subDept.manager}</p>
-                            <div class="mt-3">
-                                <span class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Sub-departamento</span>
+            // Clear containers
+            subAreasContainer.innerHTML = '';
+            objectivesContainer.innerHTML = '';
+            metricsContainer.innerHTML = '';
+            
+            // Render sub-areas if available
+            if (item.subAreas) {
+                subAreasContainer.innerHTML = '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>';
+                const subAreasGrid = subAreasContainer.querySelector('.grid');
+                
+                item.subAreas.forEach(subArea => {
+                    const subAreaCard = document.createElement('div');
+                    subAreaCard.className = 'bg-white rounded-lg shadow-md p-5 card-hover';
+                    subAreaCard.innerHTML = `
+                        <div class="flex items-start">
+                            <div class="bg-gray-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-folder text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">${subArea.name}</h4>
+                                <p class="text-gray-600 text-sm mt-1">${subArea.manager}</p>
+                                <div class="mt-3">
+                                    <span class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Sub-área</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
-                subDeptContainer.appendChild(subDeptCard);
-            });
+                    `;
+                    subAreasGrid.appendChild(subAreaCard);
+                });
+                document.getElementById('subAreasSection').classList.remove('hidden');
+            } else {
+                document.getElementById('subAreasSection').classList.add('hidden');
+            }
             
-            // Render objectives
-            objectivesContainer.innerHTML = '';
-            department.objectives.forEach((objective, index) => {
-                const objectiveItem = document.createElement('div');
-                objectiveItem.className = 'flex items-start mb-5';
-                objectiveItem.innerHTML = `
-                    <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-4 mt-1">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-gray-800">Objetivo ${index + 1}</h4>
-                        <p class="text-gray-700 mt-1">${objective}</p>
-                    </div>
-                `;
-                objectivesContainer.appendChild(objectiveItem);
-            });
+            // Render objectives if available
+            if (item.objectives) {
+                item.objectives.forEach((objective, index) => {
+                    const objectiveItem = document.createElement('div');
+                    objectiveItem.className = 'flex items-start mb-5';
+                    objectiveItem.innerHTML = `
+                        <div class="bg-blue-100 text-blue-800 rounded-full p-2 mr-4 mt-1">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-800">Objetivo ${index + 1}</h4>
+                            <p class="text-gray-700 mt-1">${objective}</p>
+                        </div>
+                    `;
+                    objectivesContainer.appendChild(objectiveItem);
+                });
+                document.getElementById('objectivesSection').classList.remove('hidden');
+            } else {
+                document.getElementById('objectivesSection').classList.add('hidden');
+            }
             
-            // Render metrics
-            metricsContainer.innerHTML = '';
-            department.metrics.forEach(metric => {
-                const progressColor = metric.progress >= 80 ? 'bg-green-500' : 
-                                    metric.progress >= 60 ? 'bg-blue-500' : 
-                                    metric.progress >= 40 ? 'bg-yellow-500' : 'bg-red-500';
-                
-                const metricCard = document.createElement('div');
-                metricCard.className = 'bg-white rounded-xl shadow p-5';
-                metricCard.innerHTML = `
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-bold text-gray-800">${metric.name}</h4>
-                        <span class="bg-gray-100 text-gray-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: ${metric.target}</span>
-                    </div>
-                    <div class="mb-2 flex justify-between">
-                        <span class="text-sm text-gray-600">Progresso</span>
-                        <span class="text-sm font-semibold">${metric.progress}%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2.5">
-                        <div class="h-2.5 rounded-full ${progressColor}" style="width: ${metric.progress}%"></div>
-                    </div>
-                    <div class="mt-4 text-center">
-                        <span class="text-xs text-gray-500">Atualizado em: ${new Date().toLocaleDateString('pt-BR')}</span>
-                    </div>
-                `;
-                metricsContainer.appendChild(metricCard);
-            });
-            
-            // Scroll to top of detail view
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Show CTO detail view
-        function showCtoDetail() {
-            // Hide main org chart, show CTO detail view
-            mainOrgChart.classList.add('hidden');
-            departmentDetail.classList.add('hidden');
-            ctoDetail.classList.remove('hidden');
-            ceoDetail.classList.add('hidden');
-            backToMainBtn.classList.remove('hidden');
+            // Render metrics if available
+            if (item.metrics) {
+                item.metrics.forEach(metric => {
+                    const progressColor = metric.progress >= 80 ? 'bg-green-500' : 
+                                        metric.progress >= 60 ? 'bg-blue-500' : 
+                                        metric.progress >= 40 ? 'bg-yellow-500' : 'bg-red-500';
+                    
+                    const metricCard = document.createElement('div');
+                    metricCard.className = 'bg-white rounded-xl shadow p-5';
+                    metricCard.innerHTML = `
+                        <div class="flex justify-between items-start mb-3">
+                            <h4 class="font-bold text-gray-800">${metric.name}</h4>
+                            <span class="bg-gray-100 text-gray-800 text-sm font-semibold px-3 py-1 rounded-lg">Meta: ${metric.target}</span>
+                        </div>
+                        <div class="mb-2 flex justify-between">
+                            <span class="text-sm text-gray-600">Progresso</span>
+                            <span class="text-sm font-semibold">${metric.progress}%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="h-2.5 rounded-full ${progressColor}" style="width: ${metric.progress}%"></div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <span class="text-xs text-gray-500">Atualizado em: ${new Date().toLocaleDateString('pt-BR')}</span>
+                        </div>
+                    `;
+                    metricsContainer.appendChild(metricCard);
+                });
+                document.getElementById('metricsSection').classList.remove('hidden');
+            } else {
+                document.getElementById('metricsSection').classList.add('hidden');
+            }
             
             // Scroll to top of detail view
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Show CEO detail view
-        function showCeoDetail() {
-            // Hide main org chart, show CEO detail view
-            mainOrgChart.classList.add('hidden');
-            departmentDetail.classList.add('hidden');
-            ctoDetail.classList.add('hidden');
-            ceoDetail.classList.remove('hidden');
-            backToMainBtn.classList.remove('hidden');
+        // Show area detail
+        function showAreaDetail(areaId) {
+            const area = areasDetails[areaId];
+            if (!area) return;
             
-            // Scroll to top of detail view
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Create a modal or alert with area details
+            alert(`Área: ${area.name}\n\nNome Completo: ${area.fullName}\n\nDescrição: ${area.description}\n\nResponsável: ${area.manager}\n\nObjetivos:\n${area.objectives.map((obj, i) => `${i+1}. ${obj}`).join('\n')}`);
         }
 
         // Back to main org chart
         backToMainBtn.addEventListener('click', function() {
-            departmentDetail.classList.add('hidden');
-            ctoDetail.classList.add('hidden');
-            ceoDetail.classList.add('hidden');
+            detailView.classList.add('hidden');
+            domOrgChartView.classList.add('hidden');
+            ddiOrgChartView.classList.add('hidden');
             mainOrgChart.classList.remove('hidden');
             backToMainBtn.classList.add('hidden');
+            backToDirectionsBtn.classList.add('hidden');
+            
+            // Reset hidden sections
+            document.getElementById('subAreasSection').classList.remove('hidden');
+            document.getElementById('objectivesSection').classList.remove('hidden');
+            document.getElementById('metricsSection').classList.remove('hidden');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Back to directions from org charts
+        backToDirectionsBtn.addEventListener('click', function() {
+            domOrgChartView.classList.add('hidden');
+            ddiOrgChartView.classList.add('hidden');
+            mainOrgChart.classList.remove('hidden');
+            backToMainBtn.classList.add('hidden');
+            backToDirectionsBtn.classList.add('hidden');
             
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
